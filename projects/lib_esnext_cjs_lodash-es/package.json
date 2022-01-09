@@ -1,0 +1,24 @@
+{
+  "name": "lib_esnext_esm_lodash-es",
+  "version": "1.0.0",
+  "description": "",
+  "main": "parcel.js",
+  "scripts": {
+    "dev:speedy": "NODE_ENV=production speedy dev -c speedy.config.ts",
+    "build:speedy": "NODE_ENV=production speedy build -c speedy.config.ts",
+    "build:webpack": "NODE_ENV=production webpack",
+    "build:esbuild": "NODE_ENV=production esbuild ../../fixtures/lodash-es/lodash.js --bundle --outfile=dist/esbuild.js",
+    "build:parcel": "NODE_ENV=production parcel build --no-cache",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "targets": {
+    "parcel": {
+      "source": "../../fixtures/lodash-es/lodash.js",
+      "outputFormat": "commonjs",
+      "distDir": "dist/parcel"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
