@@ -7,6 +7,13 @@ pnpm i
 pnpm bench
 ```
 
+# Todos
+
+- [x] generate benchmark results to disk
+- [ ] github-action bot
+- [ ] webside for benchmarks output
+- [ ] more benchmark cases
+
 # bundle lodash-es output
 
 ```
