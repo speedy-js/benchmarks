@@ -9,6 +9,9 @@ module.exports = {
             "type": "commonjs2"
         }
     },
+    "experiments": {
+        "outputModule": true
+    },
     "optimization": {
         "minimize": false
     }

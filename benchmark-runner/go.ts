@@ -89,7 +89,7 @@ export interface BuildTask {
   minimize: boolean;
   sourcemap: boolean;
   target: "esnext";
-  format: "cjs";
+  format: "cjs" | "esm";
 }
 
 export type Task = BuildTask;
@@ -104,9 +104,10 @@ function genTaskConfigOfWebpack(task: Task): WebpackConfiguration {
         path: task.outputDir,
         filename: "webpack.js",
         library: {
-          type: ({ cjs: "commonjs2" } as const)[task.format],
+          type: ({ cjs: "commonjs2", esm: "module" } as const)[task.format],
         },
       },
+      experiments: { outputModule: true },
       optimization: {
         minimize: task.minimize,
       },
@@ -126,7 +127,7 @@ function genTaskConfigOfSpeedy(task: Task): ReturnType<typeof defineConfig> {
     output: {
       path: task.outputDir,
       filename: "speedy",
-      format: ({ cjs: "cjs" } as const)[task.format],
+      format: ({ cjs: "cjs", esm: "esm" } as const)[task.format],
     },
   });
 }
@@ -136,6 +137,7 @@ function genTaskConfigOfEsbuild(task: Task) {
     task.entry,
     task.sourcemap ? "--sourcemap" : "",
     task.minimize ? "--minify" : "",
+    `--format=${({ cjs: "cjs", esm: "esm" } as const)[task.format]}`,
     "--bundle",
     `--outfile=${path.join(task.outputDir, "esbuild.js")}`,
   ].join(" ");

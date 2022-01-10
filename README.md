@@ -14,6 +14,19 @@ pnpm bench
 - [ ] webside for benchmarks output
 - [ ] more benchmark cases
 
+# How to add a benchmark project
+
+1. Copy a exsited project in projects
+2. Rename the folder and `package.json#name`
+3. Edit `task.config.js`
+4. make sure `package.json#scripts` contains
+
+```
+"build:speedy": "NODE_ENV=production speedy build -c speedy.config.ts",
+"build:webpack": "NODE_ENV=production webpack",
+"build:esbuild": "xxx", // auto-generated
+```
+
 # bundle lodash-es output
 
 ```
