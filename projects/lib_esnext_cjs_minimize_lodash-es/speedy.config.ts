@@ -4,9 +4,9 @@ export default {
         "main": "/Users/bytedance/Documents/gitcodes/benchmarks/fixtures/lodash-es/lodash.js"
     },
     "sourceMap": "external",
-    "minify": false,
+    "minify": "esbuild",
     "output": {
-        "path": "/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_esnext_cjs_lodash-es/dist",
+        "path": "/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_esnext_cjs_minimize_lodash-es/dist",
         "filename": "speedy",
         "format": "cjs"
     }

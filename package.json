@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bench": "ts-node ./benchmark-runner/index.ts"
+    "bench": "ts-node ./benchmark-runner/go.ts"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "ts-node": "^10.4.0",
     "webpack": "5.64.0",
     "webpack-cli": "4.9.1",
+    "benchmark-runner": "link:./benchmark-runner",
     "workspace-tools": "^0.18.2"
   },
   "devDependencies": {

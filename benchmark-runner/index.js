@@ -1,0 +1,1 @@
+module.exports.defineConfig  = c => c;

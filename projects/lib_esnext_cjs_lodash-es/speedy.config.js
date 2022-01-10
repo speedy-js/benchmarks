@@ -1,7 +1,7 @@
-export default {
+module.exports = {
     "mode": "production",
     "input": {
-        "main": "/Users/bytedance/Documents/gitcodes/benchmarks/fixtures/lodash-es/lodash.js"
+        "main": "/Users/bytedance/Documents/gitcodes/fixtures/lodash-es/lodash.js"
     },
     "sourceMap": "external",
     "minify": false,

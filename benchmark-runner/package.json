@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "go": "ts-node ./index.ts",
+    "go": "ts-node ./go.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
