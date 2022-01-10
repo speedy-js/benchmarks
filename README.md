@@ -7,7 +7,7 @@ pnpm i
 pnpm bench
 ```
 
-The benchmark result will be generated in `./benchmark-runner/dist``
+The benchmark result will be generated in `./benchmark-runner/dist`
 
 ## How to add a benchmark project
 
