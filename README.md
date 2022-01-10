@@ -7,14 +7,9 @@ pnpm i
 pnpm bench
 ```
 
-# Todos
+The benchmark result will be generated in `./benchmark-runner/dist``
 
-- [x] generate benchmark results to disk
-- [ ] github-action bot
-- [ ] webside for benchmarks output
-- [ ] more benchmark cases
-
-# How to add a benchmark project
+## How to add a benchmark project
 
 1. Copy a exsited project in projects
 2. Rename the folder and `package.json#name`
@@ -26,6 +21,16 @@ pnpm bench
 "build:webpack": "NODE_ENV=production webpack",
 "build:esbuild": "xxx", // auto-generated
 ```
+
+# Todos
+
+- [x] generate benchmark results to disk
+  - [ ] with corresponding `Task` information
+- [ ] github-action bot
+- [ ] webside for benchmarks output
+- [ ] more benchmark cases
+
+## 
 
 # bundle lodash-es output
 
