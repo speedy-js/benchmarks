@@ -7,6 +7,9 @@ import type { Configuration as WebpackConfiguration } from "webpack";
 import { defineConfig } from "@speedy-js/speedy-core";
 
 function setupForTask(proejctPath: string, task: Task) {
+  // TODO: Setup env
+  task.env;
+
   const pkgJsonPath = path.join(proejctPath, "package.json");
   const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath).toString());
 
@@ -28,6 +31,10 @@ function setupForTask(proejctPath: string, task: Task) {
   pkgJson.scripts["build:esbuild"] = `pnpm ${esbuildScrptValue}`;
 
   fs.writeFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 4));
+
+  return function cleanup() {
+    // TODO: Reset env
+  };
 }
 
 function readTaskConfig(proejctPath: string): Task {
@@ -39,10 +46,11 @@ function readTaskConfig(proejctPath: string): Task {
 async function main() {
   const workspaces = getPnpmWorkspaces(process.cwd());
   console.log("workspaces", workspaces);
+
   for (const workspace of workspaces) {
     console.log(`read task config of ${workspace.name}`);
     const task = readTaskConfig(workspace.path);
-    setupForTask(workspace.path, task);
+    const cleanup = setupForTask(workspace.path, task);
 
     console.log(`Add suite for ${workspace.name}`);
     let _benchmarkResultPath = path.join(
@@ -75,6 +83,8 @@ async function main() {
       }),
       b.save({ folder: "dist", file: workspace.name, format: "chart.html" })
     );
+
+    cleanup();
   }
 }
 
@@ -96,6 +106,8 @@ export type Task = BuildTask;
 
 function genTaskConfigOfWebpack(task: Task): WebpackConfiguration {
   if (task.type === "build") {
+    // TODO: transform target setting
+    task.target;
     return {
       mode: task.mode,
       entry: task.entry,
@@ -117,6 +129,8 @@ function genTaskConfigOfWebpack(task: Task): WebpackConfiguration {
 }
 function genTaskConfigOfParcel(task: Task) {}
 function genTaskConfigOfSpeedy(task: Task): ReturnType<typeof defineConfig> {
+  // TODO: transform target setting
+
   return defineConfig({
     mode: task.mode,
     input: {
@@ -132,6 +146,8 @@ function genTaskConfigOfSpeedy(task: Task): ReturnType<typeof defineConfig> {
   });
 }
 function genTaskConfigOfEsbuild(task: Task) {
+  // TODO: transform target setting
+
   return [
     "esbuild",
     task.entry,
