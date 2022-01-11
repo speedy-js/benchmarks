@@ -9,7 +9,10 @@
         "build:webpack": "NODE_ENV=production webpack",
         "build:esbuild": "pnpm esbuild /Users/bytedance/Documents/gitcodes/benchmarks/fixtures/lodash-es/lodash.js --sourcemap  --format=esm --target=es2020=es6 --bundle --outfile=/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_to-esm_to-es6_sourcemap_lodash-es/dist/esbuild.js",
         "!build:parcel": "NODE_ENV=production parcel build --no-cache",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "bench:webpack": "pnpm webpack",
+        "bench:speedy": "speedy build -c speedy.config.ts",
+        "bench:esbuild": "pnpm esbuild /Users/bytedance/Documents/gitcodes/benchmarks/fixtures/lodash-es/lodash.js --sourcemap  --format=esm --target=es6 --bundle --outfile=/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_to-esm_to-es6_sourcemap_lodash-es/dist/esbuild.js"
     },
     "targets": {
         "parcel": {

@@ -1,5 +1,5 @@
 {
-    "name": "lib_to-esm_to-es6_sourcemap_lodash-es",
+    "name": "lib_dev_to-esm_to-es5_sourcemap_lodash-es",
     "version": "1.0.0",
     "description": "",
     "main": "parcel.js",

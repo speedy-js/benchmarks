@@ -24,6 +24,8 @@
     "benny": "^3.7.1",
     "cross-spawn": "^7.0.3",
     "esbuild": "^0.14.11",
+    "fs-extra": "^10.0.0",
+    "lodash": "^4.17.21",
     "parcel": "2.1.1",
     "ts-node": "^10.4.0",
     "webpack": "5.64.0",
@@ -31,6 +33,7 @@
     "workspace-tools": "^0.18.2"
   },
   "devDependencies": {
-    "@types/cross-spawn": "^6.0.2"
+    "@types/cross-spawn": "^6.0.2",
+    "@types/fs-extra": "^9.0.13"
   }
 }
