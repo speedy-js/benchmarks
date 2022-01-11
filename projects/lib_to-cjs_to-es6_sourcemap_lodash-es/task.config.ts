@@ -11,6 +11,6 @@ export default defineConfig({
   mode: "production",
   minimize: false,
   sourcemap: true,
-  target: "esnext",
-  format: "esm",
+  target: "es6",
+  format: "cjs",
 });

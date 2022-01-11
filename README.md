@@ -3,6 +3,8 @@
 # Usage
 
 ```
+npx bina sharkdp/hyperfine
+
 pnpm i
 pnpm bench
 ```

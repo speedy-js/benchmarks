@@ -1,13 +1,13 @@
 module.exports = {
+    "target": "es5",
     "mode": "production",
     "entry": "/Users/bytedance/Documents/gitcodes/benchmarks/fixtures/lodash-es/lodash.js",
     "devtool": "source-map",
     "output": {
-        "path": "/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_esnext_cjs_lodash-es/dist",
+        "path": "/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_to-esm_to-es5_sourcemap_lodash-es/dist",
         "filename": "webpack.js",
-        "library": {
-            "type": "commonjs2"
-        }
+        "libraryTarget": "module",
+        "chunkFormat": "module"
     },
     "experiments": {
         "outputModule": true

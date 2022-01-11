@@ -1,5 +1,5 @@
 {
-    "name": "lib_esnext_cjs_minimize_lodash-es",
+    "name": "lib_to-cjs_to-es5_sourcemap_lodash-es",
     "version": "1.0.0",
     "description": "",
     "main": "parcel.js",
@@ -7,9 +7,11 @@
         "dev:speedy": "NODE_ENV=production speedy dev -c speedy.config.ts",
         "build:speedy": "NODE_ENV=production speedy build -c speedy.config.ts",
         "build:webpack": "NODE_ENV=production webpack",
-        "build:esbuild": "pnpm esbuild /Users/bytedance/Documents/gitcodes/benchmarks/fixtures/lodash-es/lodash.js --sourcemap --minify --format=cjs --bundle --outfile=/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_esnext_cjs_minimize_lodash-es/dist/esbuild.js",
+        "build:esbuild": "pnpm esbuild /Users/bytedance/Documents/gitcodes/benchmarks/fixtures/lodash-es/lodash.js --sourcemap  --format=cjs --target=es2020=es5 --bundle --outfile=/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_to-cjs_to-es5_sourcemap_lodash-es/dist/esbuild.js",
         "!build:parcel": "NODE_ENV=production parcel build --no-cache",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "bench:webpack": "pnpm webpack",
+        "bench:speedy": "speedy build -c speedy.config.ts"
     },
     "targets": {
         "parcel": {

@@ -1,0 +1,24 @@
+{
+    "name": "lib_to-esm_to-es6_sourcemap_lodash-es",
+    "version": "1.0.0",
+    "description": "",
+    "main": "parcel.js",
+    "scripts": {
+        "dev:speedy": "NODE_ENV=production speedy dev -c speedy.config.ts",
+        "build:speedy": "NODE_ENV=production speedy build -c speedy.config.ts",
+        "build:webpack": "NODE_ENV=production webpack",
+        "build:esbuild": "pnpm esbuild /Users/bytedance/Documents/gitcodes/benchmarks/fixtures/lodash-es/lodash.js --sourcemap  --format=esm --target=es2020=es6 --bundle --outfile=/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_to-esm_to-es6_sourcemap_lodash-es/dist/esbuild.js",
+        "!build:parcel": "NODE_ENV=production parcel build --no-cache",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "targets": {
+        "parcel": {
+            "source": "../../fixtures/lodash-es/lodash.js",
+            "outputFormat": "commonjs",
+            "distDir": "dist/parcel"
+        }
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

@@ -9,8 +9,8 @@ export default defineConfig({
   entry: path.resolve(__dirname, "../../fixtures/lodash-es/lodash.js"),
   outputDir: path.resolve(__dirname, "dist"),
   mode: "production",
-  minimize: true,
+  minimize: false,
   sourcemap: true,
-  target: "esnext",
-  format: "cjs",
+  target: "es5",
+  format: "esm",
 });

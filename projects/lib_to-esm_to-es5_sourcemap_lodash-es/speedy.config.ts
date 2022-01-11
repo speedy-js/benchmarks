@@ -6,8 +6,9 @@ export default {
     "sourceMap": "external",
     "minify": false,
     "output": {
-        "path": "/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_esnext_esm_lodash-es/dist",
+        "path": "/Users/bytedance/Documents/gitcodes/benchmarks/projects/lib_to-esm_to-es5_sourcemap_lodash-es/dist",
         "filename": "speedy",
         "format": "esm"
-    }
+    },
+    "target": "es5"
 }
