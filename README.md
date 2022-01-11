@@ -16,13 +16,6 @@ The benchmark result will be generated in `./benchmark-runner/dist`
 1. Copy a exsited project in projects
 2. Rename the folder and `package.json#name`
 3. Edit `task.config.js`
-4. make sure `package.json#scripts` contains
-
-```
-"build:speedy": "NODE_ENV=production speedy build -c speedy.config.ts",
-"build:webpack": "NODE_ENV=production webpack",
-"build:esbuild": "xxx", // auto-generated
-```
 
 # Todos
 
