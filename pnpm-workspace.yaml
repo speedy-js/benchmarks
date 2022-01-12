@@ -1,4 +1,6 @@
 packages:
   # all packages in subdirs of packages/
   - 'projects/**'
+  - 'benchmark-runner'
+  - "."
   # - 'projects/lib_esnext_cjs_lodash-es'
