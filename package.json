@@ -33,6 +33,8 @@
     "workspace-tools": "^0.18.2"
   },
   "devDependencies": {
+    "hyperfine": "1.0.0",
+    "typescript": "4.5.4",
     "@types/cross-spawn": "^6.0.2",
     "@types/fs-extra": "^9.0.13"
   }
