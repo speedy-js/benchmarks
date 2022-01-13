@@ -53,7 +53,10 @@ async function main() {
   const workspaces = getPnpmWorkspaces(process.cwd());
 
   const included = workspaces.filter(
-    (workspace) => !workspace.name.startsWith("!")
+    (workspace) =>
+      !workspace.name.startsWith("!") &&
+      !workspace.name.includes("benchmark-runner") &&
+      !workspace.name.includes("speedystack")
   );
   console.log(
     "included",
