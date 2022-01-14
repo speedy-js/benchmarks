@@ -58,7 +58,7 @@ async function main() {
       !workspace.name.startsWith("!") &&
       !workspace.name.includes("benchmark-runner") &&
       !workspace.name.includes("speedystack")
-  ).slice(0, 2);
+  );
   console.log(
     "included",
     included.map((w) => w.name)

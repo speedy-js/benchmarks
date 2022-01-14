@@ -27,22 +27,26 @@ export interface HyperfineResult {
 }
 
 export function genMarkdownReport(resultPaths: BenchmarkSuite[]) {
-  return BENCHMARK_REPORT.replace("__DETAILS__", resultPaths
-    .sort()
-    .map((s) => genMarkdownReportForSuite(s))
-    .join("\n\n"));
+  return BENCHMARK_REPORT.replace(
+    "__DETAILS__",
+    resultPaths
+      .sort()
+      .map((s) => genMarkdownReportForSuite(s))
+      .join("\n\n")
+  );
 }
 const BENCHMARK_SUITE_REPORT = fs
   .readFileSync(path.join(__dirname, "./templates/benchmark-suite-report.md"))
   .toString();
 
-  const BENCHMARK_REPORT = fs
+const BENCHMARK_REPORT = fs
   .readFileSync(path.join(__dirname, "./templates/benchmark-report.md"))
   .toString();
 
 function genMarkdownReportForSuite(suite: BenchmarkSuite): string {
+  const { outputDir: _, entry: __, ...taskConfig } = suite.taskConfig;
   return BENCHMARK_SUITE_REPORT.replace("__SUITE_NAME__", suite.pkgInfo.name)
-    .replace("__TASK__CONFIG__", JSON.stringify(suite.taskConfig, null, 4))
+    .replace("__TASK__CONFIG__", JSON.stringify(taskConfig, null, 4))
     .replace(
       "__DETAILS__",
       fs
