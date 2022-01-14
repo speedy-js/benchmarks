@@ -30,7 +30,7 @@ async function run() {
     const token = process.env.AUTH_TOKEN
     const owner = process.env.OWNER;
     const repo = process.env.REPO;
-    const benchmark_file = path.resolve(process.cwd(), "output.txt");
+    const benchmark_file = path.join(__dirname, "./dist/report.md");
     if (fs.existsSync(benchmark_file)) {
       const content = fs.readFileSync(benchmark_file, { encoding: "utf8" });
       const pull_number = get_number();
