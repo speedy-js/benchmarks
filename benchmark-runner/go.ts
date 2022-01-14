@@ -5,6 +5,7 @@ import spawn from "cross-spawn";
 import type { Configuration as WebpackConfiguration } from "webpack";
 import { defineConfig } from "@speedy-js/speedy-core";
 import _ from "lodash";
+import { BenchmarkSuite, genMarkdownReport } from "./analyze";
 
 function setupForTask(proejctPath: string, task: Task) {
   // TODO: Setup env
@@ -57,11 +58,12 @@ async function main() {
       !workspace.name.startsWith("!") &&
       !workspace.name.includes("benchmark-runner") &&
       !workspace.name.includes("speedystack")
-  );
+  ).slice(0, 2);
   console.log(
     "included",
     included.map((w) => w.name)
   );
+  const suiteToBeAnalyzed: BenchmarkSuite[] = [];
   for (const workspace of included) {
     const task = readTaskConfig(workspace.path);
     const commandsToBench = setupForTask(workspace.path, task);
@@ -70,6 +72,11 @@ async function main() {
       __dirname,
       `dist/${workspace.name}.json`
     );
+    suiteToBeAnalyzed.push({
+      taskConfig: task,
+      resultPath: benchmarkResultPath,
+      pkgInfo: workspace.packageJson,
+    });
     // hyperfine will check if the file exsits.
     fs.outputFileSync(benchmarkResultPath, "{}");
     fs.outputFileSync(path.join(__dirname, `dist/${workspace.name}.md`), "");
@@ -97,9 +104,9 @@ async function main() {
       result.stderr.pipe(process.stderr);
       result.on("close", rsl);
     });
-
-    // analyze(benchmarkResultPath);
   }
+
+  outputMarkdownReport(suiteToBeAnalyzed);
 }
 
 main();
@@ -182,31 +189,7 @@ function genTaskConfigOfEsbuild(task: Task) {
   ].join(" ");
 }
 
-export interface HyperfineResult {
-  command: string;
-  mean: number;
-  stddev: number;
-  median: number;
-  user: number;
-  system: number;
-  min: number;
-  max: number;
-  times: number[];
-  exit_codes: number[];
-}
-
-export interface HyperfineJSON {
-  results: HyperfineResult[];
-}
-
-function analyze(resultPaths: string[]) {
-  const benchInfo = resultPaths.map((p) => readHyperfineJSON(p));
-  // let fastest = _.maxBy(benchInfo, c => c.results)
-  // let slowest =
-  // console.log(`fastest: ${}`)
-  // console.log(`slowest: ${}`)
-}
-
-function readHyperfineJSON(filePath: string): HyperfineJSON {
-  return JSON.parse(fs.readFileSync(filePath).toString());
+function outputMarkdownReport(suites: BenchmarkSuite[]) {
+  const mdReport = genMarkdownReport(suites);
+  fs.outputFileSync(path.join(__dirname, "./dist/report.md"), mdReport);
 }
