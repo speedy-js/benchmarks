@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/iheyunfei/speedystack#readme",
   "dependencies": {
-    "@speedy-js/speedy-core": "0.8.1",
+    "@speedy-js/speedy-core": "0.9.0-alpha.2",
     "benchmark-runner": "link:benchmark-runner",
     "benny": "^3.7.1",
     "cross-spawn": "^7.0.3",
@@ -32,7 +32,8 @@
     "ts-node": "^10.4.0",
     "webpack": "5.64.0",
     "webpack-cli": "4.9.1",
-    "workspace-tools": "^0.18.2"
+    "workspace-tools": "^0.18.2",
+    "read-pkg-up": "7.0.1"
   },
   "devDependencies": {
     "@types/node": "17.0.8",
