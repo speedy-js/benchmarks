@@ -2,6 +2,7 @@ import { PackageInfo } from "workspace-tools";
 import { Task } from "./go";
 import fs from "fs-extra";
 import path from "path";
+import { sync as readPkgSync } from 'read-pkg-up';
 
 export interface BenchmarkSuite {
   resultPath: string;
@@ -26,8 +27,31 @@ export interface HyperfineResult {
   exit_codes: number[];
 }
 
+function resolveVersion(pkgName: string): {pkgName: string, version: string} {
+  return  {
+    pkgName,
+    version: readPkgSync({cwd: require.resolve(pkgName)})?.packageJson.version ?? '0.0.0'
+  };
+}
+
+function versionReport() {
+  const speedy = resolveVersion('@speedy-js/speedy-core');
+  const esbuild = resolveVersion('esbuild');
+  const webpack = resolveVersion('webpack');
+  return `
+|pkg|name|
+|-|-|
+|${speedy.pkgName}|${speedy.version}|
+|${esbuild.pkgName}|${esbuild.version}|
+|${webpack.pkgName}|${webpack.version}|
+`
+}
+
 export function genMarkdownReport(resultPaths: BenchmarkSuite[]) {
   return BENCHMARK_REPORT.replace(
+    "__VERSIONS__",
+    versionReport()
+  ).replace(
     "__DETAILS__",
     resultPaths
       .sort()
