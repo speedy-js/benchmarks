@@ -1,64 +1,12 @@
-import { getPnpmWorkspaces } from "workspace-tools";
 import path from "path";
 import fs from "fs-extra";
 import spawn from "cross-spawn";
-import type { Configuration as WebpackConfiguration } from "webpack";
-import { defineConfig } from "@speedy-js/speedy-core";
 import _ from "lodash";
 import { BenchmarkSuite, genMarkdownReport } from "./analyze";
-
-function setupForTask(proejctPath: string, task: Task) {
-  // TODO: Setup env
-  task.env;
-
-  const commandsToBench: { [script: string]: string } = {};
-
-  const pkgJsonPath = path.join(proejctPath, "package.json");
-  const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath).toString());
-
-  const webpackConfig = genTaskConfigOfWebpack(task);
-  const webpackConfigPath = path.join(proejctPath, "webpack.config.js");
-  fs.outputFileSync(
-    webpackConfigPath,
-    `module.exports = ${JSON.stringify(webpackConfig, null, 4)}`
-  );
-  commandsToBench["bench:webpack"] = "pnpm webpack";
-
-  const speedyConfig = genTaskConfigOfSpeedy(task);
-  const speedyConfigPath = path.join(proejctPath, "speedy.config.ts");
-  fs.outputFileSync(
-    speedyConfigPath,
-    `export default ${JSON.stringify(speedyConfig, null, 4)}`
-  );
-  commandsToBench["bench:speedy"] = "speedy build -c speedy.config.ts";
-
-  if (task.target !== "es5") {
-    const esbuildScrptValue = genTaskConfigOfEsbuild(task);
-    commandsToBench["bench:esbuild"] = `pnpm ${esbuildScrptValue}`;
-  }
-
-  Object.assign(pkgJson.scripts, commandsToBench);
-
-  fs.outputFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 4));
-
-  return commandsToBench;
-}
-
-function readTaskConfig(proejctPath: string): Task {
-  const taskPath = path.join(proejctPath, "task.config.ts");
-  const task = require(taskPath).default;
-  return task;
-}
+import { getWorkspaces, readTaskConfig, setupForTask } from "./utils";
 
 async function main() {
-  const workspaces = getPnpmWorkspaces(process.cwd());
-
-  const included = workspaces.filter(
-    (workspace) =>
-      !workspace.name.startsWith("!") &&
-      !workspace.name.includes("benchmark-runner") &&
-      !workspace.name.includes("speedystack")
-  );
+  const included = getWorkspaces();
   console.log(
     "included",
     included.map((w) => w.name)
@@ -110,84 +58,6 @@ async function main() {
 }
 
 main();
-
-export interface BuildTask {
-  type: "build";
-  env: { [name: string]: string };
-  entry: string;
-  outputDir: string;
-  mode: "production" | "development";
-  minimize: boolean;
-  sourcemap: boolean;
-  target: "es6" | "es5";
-  format: "cjs" | "esm";
-}
-
-export type Task = BuildTask;
-
-function genTaskConfigOfWebpack(task: Task): WebpackConfiguration {
-  if (task.type === "build") {
-    // TODO: transform target setting
-    task.target;
-    return {
-      target: ({ esnext: "es2021", es5: "es5", es6: "es6" } as const)[
-        task.target
-      ],
-      mode: task.mode,
-      entry: task.entry,
-      devtool: task.sourcemap ? "source-map" : false,
-      output: {
-        path: task.outputDir,
-        filename: "webpack.js",
-        libraryTarget: ({ cjs: "commonjs2", esm: "module" } as const)[
-          task.format
-        ],
-        chunkFormat: ({ cjs: "commonjs", esm: "module" } as const)[task.format],
-      },
-      experiments: { outputModule: true },
-      optimization: {
-        minimize: task.minimize,
-      },
-    };
-  }
-  return {};
-}
-function genTaskConfigOfParcel(task: Task) {}
-
-function genTaskConfigOfSpeedy(task: Task): ReturnType<typeof defineConfig> {
-  // TODO: transform target setting
-
-  return defineConfig({
-    mode: task.mode,
-    input: {
-      main: task.entry,
-    },
-    sourceMap: task.sourcemap ? "external" : false,
-    minify: task.minimize ? "esbuild" : false,
-    output: {
-      path: task.outputDir,
-      filename: "speedy",
-      format: ({ cjs: "cjs", esm: "esm" } as const)[task.format],
-    },
-    target: ({ esnext: "es6", es5: "es5", es6: "es6" } as const)[task.target],
-  });
-}
-function genTaskConfigOfEsbuild(task: Task) {
-  // TODO: transform target setting
-
-  return [
-    "esbuild",
-    task.entry,
-    task.sourcemap ? "--sourcemap" : "",
-    task.minimize ? "--minify" : "",
-    `--format=${({ cjs: "cjs", esm: "esm" } as const)[task.format]}`,
-    `--target=${
-      ({ esnext: "es6", es5: "es5", es6: "es6" } as const)[task.target]
-    }`,
-    "--bundle",
-    `--outfile=${path.join(task.outputDir, "esbuild.js")}`,
-  ].join(" ");
-}
 
 function outputMarkdownReport(suites: BenchmarkSuite[]) {
   const mdReport = genMarkdownReport(suites);
