@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bench": "ts-node ./benchmark-runner/go.ts",
+    "bench": "ts-node ./benchmark-runner/bin/go.ts",
     "postcomment": "ts-node ./benchmark-runner/comment.ts",
     "postinstall": "npx bina sharkdp/hyperfine"
   },

@@ -1,30 +1,13 @@
 import { PackageInfo } from "workspace-tools";
-import { Task } from "./go";
 import fs from "fs-extra";
 import path from "path";
 import { sync as readPkgSync } from 'read-pkg-up';
+import { Task } from "./src/task";
 
 export interface BenchmarkSuite {
   resultPath: string;
   taskConfig: Task;
   pkgInfo: PackageInfo;
-}
-
-export interface HyperfineJSON {
-  results: HyperfineResult[];
-}
-
-export interface HyperfineResult {
-  command: string;
-  mean: number;
-  stddev: number;
-  median: number;
-  user: number;
-  system: number;
-  min: number;
-  max: number;
-  times: number[];
-  exit_codes: number[];
 }
 
 function resolveVersion(pkgName: string): {pkgName: string, version: string} {
@@ -79,6 +62,4 @@ function genMarkdownReportForSuite(suite: BenchmarkSuite): string {
     );
 }
 
-function readHyperfineJSON(filePath: string): HyperfineJSON {
-  return JSON.parse(fs.readFileSync(filePath).toString());
-}
+
