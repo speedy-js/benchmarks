@@ -41,4 +41,5 @@ export function genBenchmarkActionData(suiteToBeAnalyzed: BenchmarkSuite[]) {
     path.join(__dirname, "../dist/bechmark-action-otuput.txt"),
     JSON.stringify(benchmarkActionData, null, 4)
   );
+  console.log('path.join(__dirname, "../dist/bechmark-action-otuput.txt")', path.join(__dirname, "../dist/bechmark-action-otuput.txt"))
 }
