@@ -108,7 +108,7 @@ async function main() {
     });
   }
   genBenchmarkActionData(suiteToBeAnalyzed)
-  outputMarkdownReport(suiteToBeAnalyzed);
+  // outputMarkdownReport(suiteToBeAnalyzed);
 }
 
 main();
