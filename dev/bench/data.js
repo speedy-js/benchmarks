@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1644507840265,
+  "lastUpdate": 1644508382899,
   "repoUrl": "https://github.com/speedy-js/benchmarks",
   "entries": {
     "Benchmark.js Benchmark": [
@@ -144,6 +144,90 @@ window.BENCHMARK_DATA = {
             "value": 3.1733496944999997,
             "unit": "s/ops",
             "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"development\"\n    },\n    \"mode\": \"development\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es6\",\n    \"format\": \"cjs\"\n}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "i.heyunfei@gmail.com",
+            "name": "Yunfei He",
+            "username": "iheyunfei"
+          },
+          "committer": {
+            "email": "i.heyunfei@gmail.com",
+            "name": "Yunfei He",
+            "username": "iheyunfei"
+          },
+          "distinct": true,
+          "id": "eb8d5676197874c98de7093a50d6d33080ae3aa9",
+          "message": "Test",
+          "timestamp": "2022-02-10T23:50:16+08:00",
+          "tree_id": "dc7b3d0c737b7dfb7422eaaaf7a5a715ff154b17",
+          "url": "https://github.com/speedy-js/benchmarks/commit/eb8d5676197874c98de7093a50d6d33080ae3aa9"
+        },
+        "date": 1644508382372,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "lib_dev_to-cjs_to-es5_sourcemap_lodash-es",
+            "value": 3.93,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"development\"\n    },\n    \"mode\": \"development\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es5\",\n    \"format\": \"cjs\"\n}"
+          },
+          {
+            "name": "lib_dev_to-cjs_to-es6_sourcemap_lodash-es",
+            "value": 2.89,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"development\"\n    },\n    \"mode\": \"development\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es6\",\n    \"format\": \"cjs\"\n}"
+          },
+          {
+            "name": "lib_dev_to-esm_to-es5_sourcemap_lodash-es",
+            "value": 2.94,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"development\"\n    },\n    \"mode\": \"development\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es5\",\n    \"format\": \"esm\"\n}"
+          },
+          {
+            "name": "lib_dev_to-esm_to-es6_minimized_sourcemap_lodash-es",
+            "value": 1.61,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"development\"\n    },\n    \"mode\": \"development\",\n    \"minimize\": true,\n    \"sourcemap\": true,\n    \"target\": \"es6\",\n    \"format\": \"esm\"\n}"
+          },
+          {
+            "name": "lib_dev_to-esm_to-es6_sourcemap_lodash-es",
+            "value": 1.55,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"development\"\n    },\n    \"mode\": \"development\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es6\",\n    \"format\": \"esm\"\n}"
+          },
+          {
+            "name": "lib_to-cjs_to-es5_sourcemap_lodash-es",
+            "value": 3.9,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"production\"\n    },\n    \"mode\": \"production\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es5\",\n    \"format\": \"cjs\"\n}"
+          },
+          {
+            "name": "lib_to-cjs_to-es6_sourcemap_lodash-es",
+            "value": 2.77,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"production\"\n    },\n    \"mode\": \"production\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es6\",\n    \"format\": \"cjs\"\n}"
+          },
+          {
+            "name": "lib_to-esm_to-es6_sourcemap_lodash-es",
+            "value": 1.56,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"production\"\n    },\n    \"mode\": \"production\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es5\",\n    \"format\": \"esm\"\n}"
+          },
+          {
+            "name": "lib_to-esm_to-es6_minimized_sourcemap_lodash-es",
+            "value": 1.61,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"production\"\n    },\n    \"mode\": \"production\",\n    \"minimize\": true,\n    \"sourcemap\": true,\n    \"target\": \"es6\",\n    \"format\": \"esm\"\n}"
+          },
+          {
+            "name": "lib_to-esm_to-es6_sourcemap_lodash-es",
+            "value": 1.56,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"production\"\n    },\n    \"mode\": \"production\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es6\",\n    \"format\": \"esm\"\n}"
           }
         ]
       }
