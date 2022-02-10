@@ -16,14 +16,6 @@ function setupForTask(proejctPath: string, task: Task) {
   const pkgJsonPath = path.join(proejctPath, "package.json");
   const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath).toString());
 
-  // const webpackConfig = genTaskConfigOfWebpack(task);
-  // const webpackConfigPath = path.join(proejctPath, "webpack.config.js");
-  // fs.outputFileSync(
-  //   webpackConfigPath,
-  //   `module.exports = ${JSON.stringify(webpackConfig, null, 4)}`
-  // );
-  // commandsToBench["bench:webpack"] = "pnpm webpack";
-
   const speedyConfig = genTaskConfigOfSpeedy(task);
   const speedyConfigPath = path.join(proejctPath, "speedy.config.ts");
   fs.outputFileSync(
@@ -31,11 +23,6 @@ function setupForTask(proejctPath: string, task: Task) {
     `export default ${JSON.stringify(speedyConfig, null, 4)}`
   );
   commandsToBench["bench:speedy"] = "speedy build -c speedy.config.ts";
-
-  // if (task.target !== "es5") {
-  //   const esbuildScrptValue = genTaskConfigOfEsbuild(task);
-  //   commandsToBench["bench:esbuild"] = `pnpm ${esbuildScrptValue}`;
-  // }
 
   Object.assign(pkgJson.scripts, commandsToBench);
 
@@ -95,7 +82,7 @@ async function main() {
           `--export-markdown`,
           path.join(__dirname, `dist/${workspace.name}.md`),
           "--runs",
-          "2",
+          "4",
           ...Object.keys(commandsToBench).map((script) => `pnpm '${script}'`),
         ],
         {
