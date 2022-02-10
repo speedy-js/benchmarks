@@ -18,12 +18,12 @@ export function genBenchmarkActionData(suiteToBeAnalyzed: BenchmarkSuite[]) {
   const benchmarkActionData: BenchmarkActionData = [];
   suiteToBeAnalyzed.forEach((suite) => {
     const { outputDir: _, entry: __, ...taskConfig } = suite.taskConfig;
-    benchmarkActionData.push({
-      name: suite.pkgInfo.name,
-      unit: "None",
-      value: 0,
-      extra: JSON.stringify(taskConfig, null, 4),
-    });
+    // benchmarkActionData.push({
+    //   name: suite.pkgInfo.name,
+    //   unit: "None",
+    //   value: 0,
+    //   extra: JSON.stringify(taskConfig, null, 4),
+    // });
     const hyperfineData = readHyperfineJSON(suite.resultPath);
     benchmarkActionData.push(
       ...hyperfineData.results.map(
@@ -32,10 +32,12 @@ export function genBenchmarkActionData(suiteToBeAnalyzed: BenchmarkSuite[]) {
             name: item.command,
             unit: "s/ops",
             value: item.mean,
+            extra: JSON.stringify(taskConfig, null, 4),
           }
       )
     );
   });
+  
   // customBiggerIsBetter
   fs.outputFileSync(
     path.join(__dirname, "../dist/bechmark-action-otuput.txt"),
