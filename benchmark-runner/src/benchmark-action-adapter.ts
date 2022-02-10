@@ -29,7 +29,7 @@ export function genBenchmarkActionData(suiteToBeAnalyzed: BenchmarkSuite[]) {
       ...hyperfineData.results.map(
         (item) =>
           <BenchmarkActionDataItem>{
-            name: item.command,
+            name: suite.pkgInfo.name,
             unit: "s/ops",
             value: item.mean,
             extra: JSON.stringify(taskConfig, null, 4),
