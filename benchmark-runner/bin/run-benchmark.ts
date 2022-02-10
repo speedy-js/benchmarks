@@ -4,8 +4,14 @@ import fs from "fs-extra";
 import spawn from "cross-spawn";
 import _ from "lodash";
 import { BenchmarkSuite, genMarkdownReport } from "../analyze";
-import { genTaskConfigOfEsbuild, genTaskConfigOfSpeedy, genTaskConfigOfWebpack, Task } from "../src/task";
+import {
+  genTaskConfigOfEsbuild,
+  genTaskConfigOfSpeedy,
+  genTaskConfigOfWebpack,
+  Task,
+} from "../src/task";
 import { genBenchmarkActionData } from "../src/benchmark-action-adapter";
+import { getIncludedWorkspace } from "../src/helper";
 
 function setupForTask(proejctPath: string, task: Task) {
   // TODO: Setup env
@@ -38,20 +44,9 @@ function readTaskConfig(proejctPath: string): Task {
 }
 
 async function main() {
-  const workspaces = getPnpmWorkspaces(process.cwd());
-
-  const included = workspaces.filter(
-    (workspace) =>
-      !workspace.name.startsWith("!") &&
-      !workspace.name.includes("benchmark-runner") &&
-      !workspace.name.includes("speedystack")
-  ).slice(0, 2);
-  console.log(
-    "included",
-    included.map((w) => w.name)
-  );
+  const includedWorkspaces = getIncludedWorkspace();
   const suiteToBeAnalyzed: BenchmarkSuite[] = [];
-  for (const workspace of included) {
+  for (const workspace of includedWorkspaces) {
     const task = readTaskConfig(workspace.path);
     const commandsToBench = setupForTask(workspace.path, task);
 
@@ -59,7 +54,7 @@ async function main() {
       __dirname,
       `dist/${workspace.name}.json`
     );
-    
+
     suiteToBeAnalyzed.push({
       taskConfig: task,
       resultPath: benchmarkResultPath,
@@ -68,7 +63,7 @@ async function main() {
 
     // hyperfine will check if the file exsits.
     fs.outputFileSync(benchmarkResultPath, "{}");
-    fs.outputFileSync(path.join(__dirname, `dist/${workspace.name}.md`), "");
+
     console.info(`\nstart benchmark of [${workspace.name}]\n`);
     await new Promise<void>((rsl) => {
       const result = spawn.spawn(
@@ -79,8 +74,6 @@ async function main() {
           "1",
           `--export-json`,
           benchmarkResultPath,
-          `--export-markdown`,
-          path.join(__dirname, `dist/${workspace.name}.md`),
           "--runs",
           "4",
           ...Object.keys(commandsToBench).map((script) => `pnpm '${script}'`),
@@ -94,12 +87,7 @@ async function main() {
       result.on("close", rsl);
     });
   }
-  genBenchmarkActionData(suiteToBeAnalyzed)
-  // outputMarkdownReport(suiteToBeAnalyzed);
+  genBenchmarkActionData(suiteToBeAnalyzed);
 }
 
 main();
-function outputMarkdownReport(suites: BenchmarkSuite[]) {
-  const mdReport = genMarkdownReport(suites);
-  fs.outputFileSync(path.join(__dirname, "./dist/report.md"), mdReport);
-}

@@ -31,7 +31,7 @@ export function genBenchmarkActionData(suiteToBeAnalyzed: BenchmarkSuite[]) {
           <BenchmarkActionDataItem>{
             name: suite.pkgInfo.name,
             unit: "s/ops",
-            value: item.mean,
+            value: parseFloat(item.mean.toFixed(2)),
             extra: JSON.stringify(taskConfig, null, 4),
           }
       )
