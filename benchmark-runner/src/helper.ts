@@ -1,9 +1,7 @@
 import { getPnpmWorkspaces } from "workspace-tools";
 
 export function getIncludedWorkspace() {
-  const workspaces = getPnpmWorkspaces(process.cwd());
-
-  const included = workspaces.filter(
+  const included = getPnpmWorkspaces(process.cwd()).filter(
     (workspace) =>
       !workspace.name.startsWith("!") &&
       !workspace.name.includes("benchmark-runner") &&
@@ -15,5 +13,5 @@ export function getIncludedWorkspace() {
     included.map((w) => w.name)
   );
 
-  return workspaces
+  return included;
 }
