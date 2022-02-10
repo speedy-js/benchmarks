@@ -37,7 +37,6 @@ export function genBenchmarkActionData(suiteToBeAnalyzed: BenchmarkSuite[]) {
       )
     );
   });
-  
   // customBiggerIsBetter
   fs.outputFileSync(
     path.join(__dirname, "../dist/bechmark-action-otuput.txt"),
