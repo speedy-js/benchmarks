@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1644507664253,
+  "lastUpdate": 1644507840265,
   "repoUrl": "https://github.com/speedy-js/benchmarks",
   "entries": {
     "Benchmark.js Benchmark": [
@@ -106,6 +106,42 @@ window.BENCHMARK_DATA = {
           {
             "name": "lib_dev_to-cjs_to-es6_sourcemap_lodash-es",
             "value": 2.71808240418,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"development\"\n    },\n    \"mode\": \"development\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es6\",\n    \"format\": \"cjs\"\n}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "i.heyunfei@gmail.com",
+            "name": "Yunfei He",
+            "username": "iheyunfei"
+          },
+          "committer": {
+            "email": "i.heyunfei@gmail.com",
+            "name": "Yunfei He",
+            "username": "iheyunfei"
+          },
+          "distinct": true,
+          "id": "2ec1825022b722d49a863e5891f9d378623de6dd",
+          "message": "Test",
+          "timestamp": "2022-02-10T23:42:40+08:00",
+          "tree_id": "928f7123b3f676e10b6c700db055df1553cebdd0",
+          "url": "https://github.com/speedy-js/benchmarks/commit/2ec1825022b722d49a863e5891f9d378623de6dd"
+        },
+        "date": 1644507839279,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "lib_dev_to-cjs_to-es5_sourcemap_lodash-es",
+            "value": 4.506175413879999,
+            "unit": "s/ops",
+            "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"development\"\n    },\n    \"mode\": \"development\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es5\",\n    \"format\": \"cjs\"\n}"
+          },
+          {
+            "name": "lib_dev_to-cjs_to-es6_sourcemap_lodash-es",
+            "value": 3.1733496944999997,
             "unit": "s/ops",
             "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"development\"\n    },\n    \"mode\": \"development\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es6\",\n    \"format\": \"cjs\"\n}"
           }
