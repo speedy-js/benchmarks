@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1644508382899,
+  "lastUpdate": 1644558160250,
   "repoUrl": "https://github.com/speedy-js/benchmarks",
   "entries": {
     "Benchmark.js Benchmark": [
@@ -228,6 +228,80 @@ window.BENCHMARK_DATA = {
             "value": 1.56,
             "unit": "s/ops",
             "extra": "{\n    \"type\": \"build\",\n    \"env\": {\n        \"NODE_ENV\": \"production\"\n    },\n    \"mode\": \"production\",\n    \"minimize\": false,\n    \"sourcemap\": true,\n    \"target\": \"es6\",\n    \"format\": \"esm\"\n}"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "i.heyunfei@gmail.com",
+            "name": "Yunfei He",
+            "username": "iheyunfei"
+          },
+          "committer": {
+            "email": "i.heyunfei@gmail.com",
+            "name": "Yunfei He",
+            "username": "iheyunfei"
+          },
+          "distinct": true,
+          "id": "e11a1fe785d4a766784f500f2898ecdece4731c2",
+          "message": "Test",
+          "timestamp": "2022-02-11T13:39:16+08:00",
+          "tree_id": "7295e27b9fbad2ff06139e350b4b3e88460b42ee",
+          "url": "https://github.com/speedy-js/benchmarks/commit/e11a1fe785d4a766784f500f2898ecdece4731c2"
+        },
+        "date": 1644558159290,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "lib_dev_to-cjs_to-es5_sourcemap_lodash-es",
+            "value": 4.65,
+            "unit": "s/ops"
+          },
+          {
+            "name": "lib_dev_to-cjs_to-es6_sourcemap_lodash-es",
+            "value": 3.37,
+            "unit": "s/ops"
+          },
+          {
+            "name": "lib_dev_to-esm_to-es5_sourcemap_lodash-es",
+            "value": 3.47,
+            "unit": "s/ops"
+          },
+          {
+            "name": "lib_dev_to-esm_to-es6_minimized_sourcemap_lodash-es",
+            "value": 1.89,
+            "unit": "s/ops"
+          },
+          {
+            "name": "lib_dev_to-esm_to-es6_sourcemap_lodash-es",
+            "value": 1.81,
+            "unit": "s/ops"
+          },
+          {
+            "name": "lib_to-cjs_to-es5_sourcemap_lodash-es",
+            "value": 4.54,
+            "unit": "s/ops"
+          },
+          {
+            "name": "lib_to-cjs_to-es6_sourcemap_lodash-es",
+            "value": 3.22,
+            "unit": "s/ops"
+          },
+          {
+            "name": "lib_to-esm_to-es6_sourcemap_lodash-es",
+            "value": 1.87,
+            "unit": "s/ops"
+          },
+          {
+            "name": "lib_to-esm_to-es6_minimized_sourcemap_lodash-es",
+            "value": 1.84,
+            "unit": "s/ops"
+          },
+          {
+            "name": "lib_to-esm_to-es6_sourcemap_lodash-es",
+            "value": 1.87,
+            "unit": "s/ops"
           }
         ]
       }
