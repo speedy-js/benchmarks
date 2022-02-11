@@ -17,13 +17,6 @@ export type BenchmarkActionData = BenchmarkActionDataItem[];
 export function genBenchmarkActionData(suiteToBeAnalyzed: BenchmarkSuite[]) {
   const benchmarkActionData: BenchmarkActionData = [];
   suiteToBeAnalyzed.forEach((suite) => {
-    const { outputDir: _, entry: __, ...taskConfig } = suite.taskConfig;
-    // benchmarkActionData.push({
-    //   name: suite.pkgInfo.name,
-    //   unit: "None",
-    //   value: 0,
-    //   extra: JSON.stringify(taskConfig, null, 4),
-    // });
     const hyperfineData = readHyperfineJSON(suite.resultPath);
     benchmarkActionData.push(
       ...hyperfineData.results.map(
@@ -32,15 +25,18 @@ export function genBenchmarkActionData(suiteToBeAnalyzed: BenchmarkSuite[]) {
             name: suite.pkgInfo.name,
             unit: "s/ops",
             value: parseFloat(item.mean.toFixed(2)),
-            extra: JSON.stringify(taskConfig, null, 4),
           }
       )
     );
   });
+
   // customBiggerIsBetter
   fs.outputFileSync(
     path.join(__dirname, "../dist/bechmark-action-otuput.txt"),
     JSON.stringify(benchmarkActionData, null, 4)
   );
-  console.log('path.join(__dirname, "../dist/bechmark-action-otuput.txt")', path.join(__dirname, "../dist/bechmark-action-otuput.txt"))
+  console.log(
+    'path.join(__dirname, "../dist/bechmark-action-otuput.txt")',
+    path.join(__dirname, "../dist/bechmark-action-otuput.txt")
+  );
 }

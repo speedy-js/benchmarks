@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bench": "ts-node ./benchmark-runner/bin/go.ts",
-    "bench:new": "ts-node ./benchmark-runner/bin/run-benchmark.ts",
+    "bench:speedy": "ts-node ./benchmark-runner/bin/bench-speedy.ts",
     "postcomment": "ts-node ./benchmark-runner/comment.ts",
     "postinstall": "npx bina sharkdp/hyperfine"
   },

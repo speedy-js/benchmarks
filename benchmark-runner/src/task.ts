@@ -21,7 +21,6 @@ export type Task = BuildTask;
 
 export function genTaskConfigOfWebpack(task: Task): WebpackConfiguration {
   if (task.type === "build") {
-    // TODO: transform target setting
     task.target;
     return {
       target: ({ esnext: "es2021", es5: "es5", es6: "es6" } as const)[
@@ -48,9 +47,9 @@ export function genTaskConfigOfWebpack(task: Task): WebpackConfiguration {
 }
 export function genTaskConfigOfParcel(task: Task) {}
 
-export function genTaskConfigOfSpeedy(task: Task): ReturnType<typeof defineConfig> {
-  // TODO: transform target setting
-
+export function genTaskConfigOfSpeedy(
+  task: Task
+): ReturnType<typeof defineConfig> {
   return defineConfig({
     mode: task.mode,
     input: {
@@ -67,8 +66,6 @@ export function genTaskConfigOfSpeedy(task: Task): ReturnType<typeof defineConfi
   });
 }
 export function genTaskConfigOfEsbuild(task: Task) {
-  // TODO: transform target setting
-
   return [
     "esbuild",
     task.entry,
@@ -82,4 +79,3 @@ export function genTaskConfigOfEsbuild(task: Task) {
     `--outfile=${path.join(task.outputDir, "esbuild.js")}`,
   ].join(" ");
 }
-

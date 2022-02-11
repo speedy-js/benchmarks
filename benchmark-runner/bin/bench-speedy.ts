@@ -1,15 +1,9 @@
-import { getPnpmWorkspaces } from "workspace-tools";
 import path from "path";
 import fs from "fs-extra";
 import spawn from "cross-spawn";
 import _ from "lodash";
-import { BenchmarkSuite, genMarkdownReport } from "../analyze";
-import {
-  genTaskConfigOfEsbuild,
-  genTaskConfigOfSpeedy,
-  genTaskConfigOfWebpack,
-  Task,
-} from "../src/task";
+import { BenchmarkSuite } from "../analyze";
+import { genTaskConfigOfSpeedy, Task } from "../src/task";
 import { genBenchmarkActionData } from "../src/benchmark-action-adapter";
 import { getIncludedWorkspace } from "../src/helper";
 
